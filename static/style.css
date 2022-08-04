@@ -1,0 +1,15 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    background-color: #00b4d8;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    padding: 10px
+}
+
+.header_titulo {
+    color: #FFFF;
+    font-size: 50px;
+    text-align: center;
+}
