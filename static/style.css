@@ -6,27 +6,17 @@ body {
 .header{
     background-color: #006466;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-    padding: 10px
 }
 
 .header_titulo {
     color: #ffff;
     font-size: 50px;
     font-weigth: bold;
-    padding: 10px 50px;
-}
-
-.main {
-    display: flex;
-    flex-flow: row wrap;
-    flex-grow: 1;
-    justify-content: space-around;
-    padding: 10px 40px;
+    padding: 10px 0px;
 }
 
 .main_box{
     background-color: #1b3a4b;
     box-shadow: 5px 5px 16px -1px rgba(0,0,0,0.11);
-    width: 400px;
     margin: 10px
 }
