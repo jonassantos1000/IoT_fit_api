@@ -3,13 +3,10 @@ from flask import render_template
 
 app = server.app
 
-counter = 1
 
 @app.route('/')
 def home():
-    global counter
-    counter += 1
-    return render_template('index.html', copper=counter)
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
