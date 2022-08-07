@@ -18,5 +18,6 @@ def auth():
         return redirect('/')
     return redirect('/auth')
 
+
 if __name__ == '__main__':
     server.run()
