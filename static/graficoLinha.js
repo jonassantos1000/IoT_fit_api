@@ -1,55 +1,29 @@
-   function desenharGraficoLinha() {
-        var data = new google.visualization.DataTable();
+let linhas = [[0,0], [2,5]]
+
+ function implementarLinhas() {
+        linhas.push([2,23])
+        return linhas
+ }
+
+ function criarColunas(data) {
         data.addColumn('number', 'Tempo (min)')
         data.addColumn('number', 'Distância (metros)')
+  }
 
 
-        data.addRows([
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1]
+ function desenharGraficoLinha() {
+        var data = new google.visualization.DataTable();
 
-        ])
+        criarColunas(data);
 
-        var options = {
-          title: 'Distância percorrida x tempo',
-          legend: 'none',
-          hAxis: {
-            title: 'Tempo (min)',
-            baselineColor: '#8f9bb3',
-            gridlineColor: '#8f9bb3',
-            titleTextStyle: {
-            color: 'white'
-            },
-            textStyle: {
-            color: '#8f9bb3'
-        }
-            },
-            vAxis: {
-          title: 'Distância (metros)',
-          baselineColor: '#8f9bb3',
-            gridlineColor: '#8f9bb3',
-           titleTextStyle: {
-            color: 'white'
-            },
-            textStyle: {
-            color: '#8f9bb3'
-        }
-        },
-        width: 990,
-        height: 300,
-         titleTextStyle: {
-        color: 'white'
-        },
-        backgroundColor: '#222b45',
-        colors: ['rgb(0, 214, 143)'],
-        fontName:'Sora',
-        };
+        data.addRows(implementarLinhas());
+
+        var options = linhaOptions;
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
         chart.draw(data, options);
-      }
+
+   }
+
+

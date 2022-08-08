@@ -2,9 +2,9 @@ function desenharGrafico(){
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(desenharGraficoLinha);
 };
-
-
 desenharGrafico();
+
+
 
 fetch('https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate', {
   method: 'POST',
