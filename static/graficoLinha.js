@@ -3,16 +3,22 @@
         data.addColumn('number', 'Tempo (min)')
         data.addColumn('number', 'Distância (metros)')
 
+        list =  [[1, 0],
+        [2, 5],
+        [3,10],
+        [4, 3],
+        [5, 7],
+        [6, 8],
+        [7, 11],
+        [8, 13],
+        [9, 4],
+        [10, 6]]
 
-        data.addRows([
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1],
-        [Math.random() * (15 - 1) + 1, Math.random() * (15 - 1) + 1]
-
-        ])
+        list.forEach((valores) => {
+            data.addRows([
+                valores
+            ])
+        })
 
         var options = {
           title: 'Distância percorrida x tempo',

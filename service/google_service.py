@@ -12,7 +12,7 @@ class GoogleService:
         self._service = None
         self._API_SERVICE_NAME = 'fitness'
         self._API_VERSION = 'v1'
-        self._SCOPES = ['https://www.googleapis.com/auth/fitness.activity.read']
+        self._SCOPES = ['https://www.googleapis.com/auth/fitness.activity.read','https://www.googleapis.com/auth/fitness.location.read']
 
     def autenticar(self):
         if not self.autenticacao_valida():
