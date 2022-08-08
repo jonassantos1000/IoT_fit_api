@@ -1,7 +1,8 @@
 class Response:
-    def __init__(self, passos, distancia):
+    def __init__(self, passos, distancia, velocidade_media):
         self._passos = passos
         self._distancia = distancia
+        self._velocidade_media = velocidade_media
 
     @property
     def passos(self):
@@ -10,6 +11,10 @@ class Response:
     @property
     def distancia(self):
         return self._distancia
+
+    @property
+    def velocidade_media(self):
+        return self._velocidade_media
 
     def dict(self):
         response = {}

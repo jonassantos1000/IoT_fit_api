@@ -1,9 +1,10 @@
 import requests
+import json
+from datetime import datetime
 from model.payload_dto import PayloadDTO
 from model.payload import PayLoad
 from model.aggregate import Aggregate
 from model.bucket_by_time import bucketByTime
-import json
 from model.response import Response
 
 
@@ -13,9 +14,7 @@ class DataService:
 
     def find_data_by_millis(self, payload_dto):
         url, headers, playload = self._popular_requisicao(payload_dto)
-        response  = requests.post(url, headers=headers, data=json.dumps(playload))
-        response = Response(response.json()['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal'],
-                            response.json()['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']).dict()
+        response = self._gerar_resposta(requests.post(url, headers=headers, data=json.dumps(playload)))
         return response
 
     def _popular_requisicao(self, payload_dto: PayloadDTO):
@@ -37,3 +36,13 @@ class DataService:
         return {
             'Authorization': f'Bearer {token}'
         }
+
+    def _gerar_resposta(self, response):
+        qtde_passos = response.json()['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal']
+        qtde_metros = response.json()['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']
+        velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
+        response = Response(qtde_passos, qtde_metros,velocidade_media).dict()
+        return response
+
+    def _calcular_velocidade_media(self, distancia, tempo):
+        return distancia / tempo
