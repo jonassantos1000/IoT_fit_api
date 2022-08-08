@@ -3,7 +3,6 @@ function desenharGrafico(){
       google.charts.setOnLoadCallback(desenharGraficoLinha);
 };
 
-
 desenharGrafico();
 
 function requisicao(){
@@ -25,4 +24,4 @@ function requisicao(){
         .then(resp => console.log(resp.bucket[0].dataset[0].point[0].value[0].intVal, resp.bucket[0].dataset[1].point[0].value[0].fpVal))
 }
 
-//setInterval(requisicao, 8000)
+

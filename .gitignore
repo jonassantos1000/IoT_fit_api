@@ -1,3 +1,5 @@
 /venv/
 .idea
 git
+model/__pycache__/*
+service/__pycache__/*

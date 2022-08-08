@@ -1,6 +1,5 @@
 import requests
 import json
-from datetime import datetime
 from model.payload_dto import PayloadDTO
 from model.payload import PayLoad
 from model.aggregate import Aggregate
@@ -8,11 +7,11 @@ from model.bucket_by_time import bucketByTime
 from model.response import Response
 
 
-class DataService:
+class DadosService:
     def __init__(self):
         self._URL = 'https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate'
 
-    def find_data_by_millis(self, payload_dto):
+    def buscar_dados_por_milissegundos(self, payload_dto):
         url, headers, playload = self._popular_requisicao(payload_dto)
         response = self._gerar_resposta(requests.post(url, headers=headers, data=json.dumps(playload)))
         return response
