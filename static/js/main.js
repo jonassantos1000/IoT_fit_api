@@ -28,15 +28,17 @@ setInterval(() => {
         })
         .then(response => response.json())
         .then(json =>  {
-
-            distanciaInicial += json.distancia
-            tempoInicial += 45
-            graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
+            if(graficoDistancia._valores.length == 0){
+                graficoDistancia.atualizarDados([0, 0])
+            }
+             tempoInicial += 60
+             distanciaInicial += json.distancia
+             graficoDistancia.atualizarDados([tempoInicial / 60, Math.floor(json.distancia)])
 
         })
         .catch(err => console.log(err))
 
-    }, 10000)
+    }, 30000)
 
 
 
