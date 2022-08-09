@@ -1,7 +1,6 @@
 distanciaOptions  =   {
    title: "Distância percorrida x tempo",
     legend: "none",
-    curveType: 'function',
     hAxis: {
         title: "Tempo (min)",
         baselineColor: "#8f9bb3",

@@ -21,7 +21,7 @@ function pegarDados() {
     return dadosJson
 }
 
-const inicioAtividade = +new Date();
+let inicioAtividade = +new Date();
 
 function criarTempoAtividade(atualAtividade){
 
@@ -29,6 +29,8 @@ function criarTempoAtividade(atualAtividade){
         startTimeMillis: inicioAtividade,
         endTimeMillis: atualAtividade
     }
+
+    inicioAtividade = atualAtividade
 
     return tempo
 

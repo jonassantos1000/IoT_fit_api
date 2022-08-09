@@ -3,6 +3,7 @@ class Grafico {
         this._eY = eY
         this._eX = eX
         this._valores = valores
+        this._data = new google.visualization.DataTable()
         this._grafico = googleChart
         this._options = options
     }
@@ -12,22 +13,33 @@ class Grafico {
         this._data.addColumn('number', this._eY)
         this._data.addColumn('number', this._eX)
         this._valores.push(valoresAPI)
-        this._data.addRows(this._valores);
+        this.criarTabela()
         this.desenharGrafico()
      }
+
+     criarTabela(){
+        this._data = new google.visualization.DataTable()
+        this.criarColunas()
+        this.criarLinhas()
+     }
+
+
+     desenharGrafico() {
+            this._grafico.draw(this._data, this._options)
+     }
+
+     criarGrafico() {
+            this.criarTabela()
+            this._grafico.draw(this._data, this._options)
+     }
+
+     criarColunas() {
+        this._data.addColumn('number', this._eY)
+        this._data.addColumn('number', this._eX)
+
+    }
 
     criarLinhas() {
             this._data.addRows(this._valores);
     }
-
-     desenharGrafico() {
-            this._grafico.draw(this._data, this._options);
-     }
-
-     criarGrafico() {
-            this.atualizarDados()
-            this.criarLinhas()
-            this._grafico.draw(this._data, this._options);
-     }
-
 }

@@ -25,29 +25,21 @@ setInterval(()=> {
     graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
 }, 1000)
 
-//setInterval(() => {
-//
-//        const body = criarTempoAtividade(+new Date())
-//
-//        fetch('http://localhost:8080/dados', {
-//        method: "POST",
-//        body: JSON.stringify(body),
-//        headers: {"Content-type": "application/json; charset=UTF-8"}
-//        })
-//        .then(response => response.json())
-//        .then(json =>  {
-//
-//            distanciaInicial += json.distancia
-//            tempoInicial += 45
-//            graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
-//
-//        })
-//        .catch(err => console.log(err))
-//
-//    }, 10000)
+fetch('http://localhost:8080/dados', {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+        .then(response => response.json())
+        .then(json =>  {
+            if(graficoDistancia._valores.length == 0){
+                graficoDistancia.atualizarDados([0, 0])
+            }
+             tempoInicial += 60
+             distanciaInicial += json.distancia
+             graficoDistancia.atualizarDados([tempoInicial / 60, Math.floor(json.distancia)])
 
+        })
+        .catch(err => console.log(err))
 
-
-
-
-
+    }, 30000)
