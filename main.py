@@ -6,6 +6,7 @@ from service.google_service import *
 from service.dados_service import DadosService
 
 
+
 app = server.app
 service = GoogleService()
 

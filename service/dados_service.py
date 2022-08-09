@@ -44,4 +44,4 @@ class DadosService:
         return response
 
     def _calcular_velocidade_media(self, distancia, tempo):
-        return distancia / tempo
+        return round(distancia / tempo, 3)

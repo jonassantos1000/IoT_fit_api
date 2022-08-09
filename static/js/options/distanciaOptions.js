@@ -1,6 +1,7 @@
 distanciaOptions  =   {
    title: "Distância percorrida x tempo",
     legend: "none",
+    curveType: 'function',
     hAxis: {
         title: "Tempo (min)",
         baselineColor: "#8f9bb3",
@@ -11,9 +12,8 @@ distanciaOptions  =   {
         textStyle: {
             "color": "#8f9bb3"
         },
-        viewWindow: {
-            "max": 60
-        }
+
+
     },
     vAxis: {
         title: "Distância (metros)",
@@ -24,7 +24,8 @@ distanciaOptions  =   {
         },
         textStyle: {
             color: "#8f9bb3"
-        }
+        },
+
     },
     width: 990,
     height: 300,

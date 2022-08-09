@@ -1,36 +1,33 @@
-function resposta() {
+async function resposta() {
 
     const body = criarTempoAtividade()
 
-    return jQuery.ajax ({
-    url: 'http://localhost:8080/dados',
-    type: "POST",
-    dataType: "json",
-    data: JSON.stringify(body),
-    contentType: "application/json; charset=utf-8",
-    complete: function(data) {
-        var response = JSON.stringify(data);
-        return response
-    }
-    })};
+    let getDados = await fetch('http://localhost:8080/dados', {
+     method: "POST",
+    body: JSON.stringify(body),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then(response => response.json())
+    .then(json =>  json)
+    .catch(err => console.log(err))
 
-async function pegarDados() {
 
-    let promise = resposta()
+    return getDados
+    };
 
-    let dados = await promise.then(resp => resp)
-
-    console.log(dados)
-
-    desenharGraficoDistancia();
-
+function pegarDados() {
+    let distancia
+    let dadosJson =  resposta()
+    return dadosJson
 }
 
-function criarTempoAtividade(){
+const inicioAtividade = +new Date();
+
+function criarTempoAtividade(atualAtividade){
 
     tempo = {
-        startTimeMillis: 1659970800000,
-        endTimeMillis: 1659987809875
+        startTimeMillis: inicioAtividade,
+        endTimeMillis: atualAtividade
     }
 
     return tempo

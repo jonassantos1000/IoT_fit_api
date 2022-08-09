@@ -11,12 +11,13 @@ class Grafico {
      atualizarDados(valoresAPI) {
         this._valores.push(valoresAPI)
         this._data.addRows(this._valores);
+        this.desenharGrafico()
      }
 
      criarColunas() {
         this._data.addColumn('number', this._eY)
         this._data.addColumn('number', this._eX)
-        this._data.addColumn({type: 'string', role: 'annotation'});
+
     }
 
     criarLinhas() {
@@ -24,6 +25,10 @@ class Grafico {
     }
 
      desenharGrafico() {
+            this._grafico.draw(this._data, this._options);
+     }
+
+     criarGrafico() {
             this.criarColunas()
             this.criarLinhas()
             this._grafico.draw(this._data, this._options);
