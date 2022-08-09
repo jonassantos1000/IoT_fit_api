@@ -15,28 +15,36 @@ function criarTodosGraficos(){
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 }
+
 desenharGraficos()
 
-setInterval(() => {
 
-        const body = criarTempoAtividade(+new Date())
+setInterval(()=> {
+    distanciaInicial += 10
+    tempoInicial += 60
+    graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
+}, 1000)
 
-        fetch('http://localhost:8080/dados', {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
-        .then(response => response.json())
-        .then(json =>  {
-
-            distanciaInicial += json.distancia
-            tempoInicial += 45
-            graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
-
-        })
-        .catch(err => console.log(err))
-
-    }, 10000)
+//setInterval(() => {
+//
+//        const body = criarTempoAtividade(+new Date())
+//
+//        fetch('http://localhost:8080/dados', {
+//        method: "POST",
+//        body: JSON.stringify(body),
+//        headers: {"Content-type": "application/json; charset=UTF-8"}
+//        })
+//        .then(response => response.json())
+//        .then(json =>  {
+//
+//            distanciaInicial += json.distancia
+//            tempoInicial += 45
+//            graficoDistancia.atualizarDados([Math.floor(tempoInicial / 60), distanciaInicial])
+//
+//        })
+//        .catch(err => console.log(err))
+//
+//    }, 10000)
 
 
 
