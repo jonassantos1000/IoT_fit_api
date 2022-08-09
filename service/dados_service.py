@@ -44,7 +44,7 @@ class DadosService:
             velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
             response = Response(qtde_passos, qtde_metros,velocidade_media).dict()
             return response
-        return dict(passos=0, metros=0, velocidade_media= 0)
+        return dict(passos=0, distancia=0, velocidade_media= 0)
 
     def _calcular_velocidade_media(self, distancia, tempo):
         return round(distancia / tempo, 3)

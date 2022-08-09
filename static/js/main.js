@@ -45,9 +45,8 @@ setInterval(() => {
                         graficoDistancia.atualizarDados([0, 0])
                     }
                      distanciaInicial += json.distancia
-                     console.log(segundos/60)
-                     graficoDistancia.atualizarDados([segundos / 60, Math.floor(json.distancia)])
+                     graficoDistancia.atualizarDados([(segundos / 60), json.distancia])
 
                 })
                 .catch(err => console.log(err))
-}, 31000)
+}, 5000)
