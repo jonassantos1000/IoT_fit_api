@@ -1,6 +1,7 @@
 let graficoDistancia
 let tempoInicial = 0
 let distanciaInicial = 0
+var segundos = 0
 
 
 function desenharGraficos(){
@@ -26,6 +27,10 @@ desenharGraficos()
 //}, 1000)
 
 setInterval(() => {
+    segundos += 1
+}, 1000)
+
+setInterval(() => {
 
         const body = criarTempoAtividade(+new Date())
 
@@ -39,10 +44,10 @@ setInterval(() => {
                     if(graficoDistancia._valores.length == 0){
                         graficoDistancia.atualizarDados([0, 0])
                     }
-                     tempoInicial += 60
                      distanciaInicial += json.distancia
-                     graficoDistancia.atualizarDados([tempoInicial / 60, Math.floor(json.distancia)])
+                     console.log(segundos/60)
+                     graficoDistancia.atualizarDados([segundos / 60, Math.floor(json.distancia)])
 
                 })
                 .catch(err => console.log(err))
-}, 30000)
+}, 31000)
