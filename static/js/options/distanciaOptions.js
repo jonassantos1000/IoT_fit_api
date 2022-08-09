@@ -1,4 +1,4 @@
-linhaOptions  =   {
+distanciaOptions  =   {
    title: "Distância percorrida x tempo",
     legend: "none",
     hAxis: {

@@ -30,8 +30,10 @@ def data():
     response = app.response_class(
         response=json.dumps(result.buscar_dados_por_milissegundos(payload)),
         status=200,
-        mimetype='application/json'
+        mimetype='application/json',
+
     )
+    response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
 if __name__ == '__main__':
