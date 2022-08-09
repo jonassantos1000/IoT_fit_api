@@ -8,10 +8,7 @@ class Grafico {
         this._options = options
     }
 
-     atualizarDados(valoresAPI={}) {
-        this._data = new google.visualization.DataTable();
-        this._data.addColumn('number', this._eY)
-        this._data.addColumn('number', this._eX)
+     atualizarDados(valoresAPI) {
         this._valores.push(valoresAPI)
         this.criarTabela()
         this.desenharGrafico()
@@ -22,7 +19,6 @@ class Grafico {
         this.criarColunas()
         this.criarLinhas()
      }
-
 
      desenharGrafico() {
             this._grafico.draw(this._data, this._options)
@@ -40,6 +36,7 @@ class Grafico {
     }
 
     criarLinhas() {
-            this._data.addRows(this._valores);
+        this._data.addRows(this._valores);
     }
+
 }

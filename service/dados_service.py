@@ -37,11 +37,13 @@ class DadosService:
         }
 
     def _gerar_resposta(self, response):
-        qtde_passos = response.json()['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal']
-        qtde_metros = response.json()['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']
-        velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
-        response = Response(qtde_passos, qtde_metros,velocidade_media).dict()
-        return response
+        if response.json()['bucket']:
+            qtde_passos = response.json()['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal']
+            qtde_metros = response.json()['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']
+            velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
+            response = Response(qtde_passos, qtde_metros,velocidade_media).dict()
+            return response
+        return dict(passos=0, metros=0, velocidade_media= 0)
 
     def _calcular_velocidade_media(self, distancia, tempo):
         return round(distancia / tempo, 3)
