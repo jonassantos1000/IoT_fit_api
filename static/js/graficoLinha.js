@@ -1,13 +1,14 @@
 class GraficoLinha extends Grafico{
     constructor(eY, eX, googleChart, valores, options){
-        super(googleChart, valores, options)
+        super(googleChart, valores,options.distanciaOptions(60))
         this._eY = eY
         this._eX = eX
+        this._obj = options
     }
 
      atualizarDados(valoresAPI, distanciaAnterior) {
         this._valores.push(valoresAPI)
-        this._options = this._obj(valoresAPI[1])
+        this._options = this._obj.distanciaOptions(valoresAPI[1])
         this.criarTabela()
         super.desenharGrafico()
      }

@@ -10,7 +10,7 @@ function desenharGraficos(){
 function criarTodosGraficos(){
     let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
                     new google.visualization.LineChart(document.getElementById('curve_chart')),
-                    [], new Options(), '');
+                    [], new Options());
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 }
@@ -36,4 +36,4 @@ setInterval(() => {
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
                 })
                 .catch(err => console.log(err))
-}, 10000)
+}, 30000)
