@@ -15,9 +15,9 @@ function criarTodosGraficos(){
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 
-    let graficoVelocidadeInstancia = new GraficoVelocidade([['velocidade', 50], ['velocidade', 0]],
+    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 0],
                     new google.visualization.Gauge(document.getElementById('speed_chart')),
-                    new VelocidadeMediaOptions())
+                    new VelocidadeMediaOptions().VelocidadeOptions())
     graficoVelocidade = graficoVelocidadeInstancia
     graficoVelocidade.criarGrafico()
 }
@@ -44,9 +44,9 @@ setInterval(() => {
                         graficoVelocidade.atualizarDados(0)
                     }
 
-
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
-                     graficoVelocidade.atualizarDados(json.velocidade_media)
+                     console.log(json.velocidade_media)
+                     graficoVelocidade.atualizarDados(['m/s',json.velocidade_media])
                 })
                 .catch(err => console.log(err))
 }, 30000)
