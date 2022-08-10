@@ -10,7 +10,6 @@ class Grafico {
 
      atualizarDados(valoresAPI) {
         this._valores.push(valoresAPI)
-        console.log(valoresAPI)
         this.criarTabela()
         this.desenharGrafico()
      }
