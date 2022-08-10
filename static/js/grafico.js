@@ -8,8 +8,9 @@ class Grafico {
         this._options = options
     }
 
-     atualizarDados(valoresAPI) {
+     atualizarDados(valoresAPI, distanciaAnterior) {
         this._valores.push(valoresAPI)
+        this._options = distanciaOptions(valoresAPI[1])
         this.criarTabela()
         this.desenharGrafico()
      }

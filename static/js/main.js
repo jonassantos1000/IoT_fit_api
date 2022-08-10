@@ -1,6 +1,5 @@
 let graficoDistancia
-let distanciaInicial = 0
-var segundos = 0
+let segundos = 0
 
 
 function desenharGraficos(){
@@ -9,36 +8,32 @@ function desenharGraficos(){
 };
 
 function criarTodosGraficos(){
-    var graficoDistanciaInstancia = new Grafico('Tempo (min)', 'Distância (metros)',
+    let graficoDistanciaInstancia = new Grafico('Tempo (min)', 'Distância (metros)',
                     new google.visualization.LineChart(document.getElementById('curve_chart')),
-                    [], distanciaOptions);
+                    [], distanciaOptions(60));
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 }
 
 desenharGraficos()
 
+//Começa a contar o tempo de atividade
 setInterval(() => {
     segundos += 1
 }, 1000)
 
+
+//Requisição a cada um certo periodo de tempo para atualizar os gráficos
 setInterval(() => {
 
-        const body = criarTempoAtividade(+new Date())
-
-        fetch('http://localhost:8080/dados', {
-                method: "POST",
-                body: JSON.stringify(body),
-                headers: {"Content-type": "application/json; charset=UTF-8"}
-                })
+        fetchDados()
                 .then(response => response.json())
                 .then(json =>  {
                     if(graficoDistancia._valores.length == 0){
                         graficoDistancia.atualizarDados([0, 0])
                     }
-                     distanciaInicial += json.distancia
-                     graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
 
+                     graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
                 })
                 .catch(err => console.log(err))
-}, 30000)
+}, 45000)

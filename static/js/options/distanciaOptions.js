@@ -1,4 +1,14 @@
-distanciaOptions  =   {
+let vMax = 0
+
+const atribuirVmax = (novoVmax) => {
+      vMax = novoVmax + 20
+      return vMax
+}
+
+
+const distanciaOptions  = (vMaxAtual) =>  {
+
+   return {
    title: "Distância percorrida x tempo",
     legend: "none",
     hAxis: {
@@ -11,7 +21,7 @@ distanciaOptions  =   {
         textStyle: {
             "color": "#8f9bb3"
         },
-
+        format: '#.# min',
 
     },
     vAxis: {
@@ -24,6 +34,13 @@ distanciaOptions  =   {
         textStyle: {
             color: "#8f9bb3"
         },
+        format: '### m',
+        viewWindowMode:'explicit',
+        viewWindow:{
+                max: vMaxAtual > vMax ? atribuirVmax(vMaxAtual) : vMax,
+                min:0
+              }
+
 
     },
     width: 990,
@@ -37,4 +54,4 @@ distanciaOptions  =   {
     ],
     fontName: "Sora",
     pointSize: 5
-}
+}}
