@@ -1,4 +1,4 @@
-class Options{
+class DistanciaTempoOptions{
 
     constructor(){
         this.vMax = 0
