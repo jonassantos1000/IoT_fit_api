@@ -8,9 +8,9 @@ function desenharGraficos(){
 };
 
 function criarTodosGraficos(){
-    let graficoDistanciaInstancia = new Grafico('Tempo (min)', 'Distância (metros)',
+    let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
                     new google.visualization.LineChart(document.getElementById('curve_chart')),
-                    [], distanciaOptions(60));
+                    [], new Options(), '');
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 }
@@ -36,4 +36,4 @@ setInterval(() => {
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
                 })
                 .catch(err => console.log(err))
-}, 45000)
+}, 10000)

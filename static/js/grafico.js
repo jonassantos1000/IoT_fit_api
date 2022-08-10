@@ -1,7 +1,5 @@
 class Grafico {
-    constructor(eY, eX, googleChart, valores, options){
-        this._eY = eY
-        this._eX = eX
+    constructor(googleChart, valores, options){
         this._valores = valores
         this._data = new google.visualization.DataTable()
         this._grafico = googleChart
@@ -9,35 +7,10 @@ class Grafico {
     }
 
      atualizarDados(valoresAPI, distanciaAnterior) {
-        this._valores.push(valoresAPI)
-        this._options = distanciaOptions(valoresAPI[1])
-        this.criarTabela()
-        this.desenharGrafico()
-     }
-
-     criarTabela(){
-        this._data = new google.visualization.DataTable()
-        this.criarColunas()
-        this.criarLinhas()
+        throw new Error('metodo abstrato, precisa implementar')
      }
 
      desenharGrafico() {
-            this._grafico.draw(this._data, this._options)
+         this._grafico.draw(this._data, this._options)
      }
-
-     criarGrafico() {
-            this.criarTabela()
-            this._grafico.draw(this._data, this._options)
-     }
-
-     criarColunas() {
-        this._data.addColumn('number', this._eY)
-        this._data.addColumn('number', this._eX)
-
-    }
-
-    criarLinhas() {
-        this._data.addRows(this._valores);
-    }
-
 }
