@@ -1,5 +1,6 @@
 let graficoDistancia
 let graficoVelocidade
+let graficoPassos
 let segundos = 0
 
 
@@ -12,12 +13,23 @@ function criarTodosGraficos(){
     let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
                     new google.visualization.LineChart(document.getElementById('curve_chart')),
                     [], new DistanciaTempoOptions());
+
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
+
+    let graficoPassosInstancia = new GraficoLinha('Distância (metros)', 'Passos)',
+                    new google.visualization.LineChart(document.getElementById('grafico_passos')),
+                    [], new PassosDistanciaOptions());
+
+    graficoPassos = graficoPassosInstancia
+    graficoPassos.criarGrafico();
+
 
     let graficoVelocidadeInstancia = new GraficoVelocidade([['velocidade', 50], ['velocidade', 0]],
                     new google.visualization.Gauge(document.getElementById('speed_chart')),
                     new VelocidadeMediaOptions())
+
+
     graficoVelocidade = graficoVelocidadeInstancia
     graficoVelocidade.criarGrafico()
 }
@@ -26,7 +38,7 @@ desenharGraficos()
 
 //Começa a contar o tempo de atividade
 setInterval(() => {
-    segundos += 1
+    segundos += 30
 }, 1000)
 
 
@@ -40,13 +52,18 @@ setInterval(() => {
                         graficoDistancia.atualizarDados([0, 0])
                     }
 
+                    if(graficoPassos._valores.length == 0){
+                        graficoPassos.atualizarDados([0, 0])
+                    }
+
                     if(graficoVelocidade._valores.length == 0){
                         graficoVelocidade.atualizarDados(0)
                     }
 
 
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
+                     graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos])
                      graficoVelocidade.atualizarDados(json.velocidade_media)
                 })
                 .catch(err => console.log(err))
-}, 30000)
+}, 5000)
