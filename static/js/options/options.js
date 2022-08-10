@@ -57,3 +57,19 @@ class DistanciaTempoOptions{
         }
     }
 }
+
+class VelocidadeMediaOptions{
+    VelocidadeOptions() {
+
+    return options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5,
+          animation: {
+          	duration: 1000,
+          	easing: 'linear'
+      		}
+        };
+    }
+}
