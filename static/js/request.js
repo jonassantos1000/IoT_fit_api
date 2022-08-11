@@ -1,6 +1,6 @@
 let inicioAtividade = +new Date();
 
-function criarTempoAtividade(atualAtividade){
+function criarTempoAtividade(atualAtividade) {
 
     tempoAtividade = {
         startTimeMillis: inicioAtividade,
@@ -13,16 +13,16 @@ function criarTempoAtividade(atualAtividade){
 
 }
 
-function fetchDados(){
+function fetchDados() {
 
-          const body = criarTempoAtividade(+new Date())
+    const body = criarTempoAtividade(+new Date())
 
-          const dados = fetch('http://localhost:8080/dados', {
-          method: "POST",
-          body: JSON.stringify(body),
-          headers: {"Content-type": "application/json; charset=UTF-8"}
-                })
+    const dados = fetch('http://localhost:8080/dados', {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+    })
 
-          return dados
+    return dados
 }
 

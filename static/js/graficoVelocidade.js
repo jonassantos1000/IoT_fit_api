@@ -1,5 +1,5 @@
-class GraficoVelocidade extends Grafico{
-    constructor(valores, googleChart, options){
+class GraficoVelocidade extends Grafico {
+    constructor(valores, googleChart, options) {
         super(googleChart, valores, options)
     }
 
@@ -14,18 +14,18 @@ class GraficoVelocidade extends Grafico{
         super.desenharGrafico()
     }
 
-    criarTabela(){
+    criarTabela() {
         this._data = new google.visualization.DataTable()
         this.criarColuna()
         this.criarLinha()
     }
 
-    criarColuna(){
+    criarColuna() {
         this._data.addColumn('string', 'Velocidade');
         this._data.addColumn('number', 'm/s');
     }
 
-    criarLinha(){
+    criarLinha() {
         this._data.addRow(this._valores);
     }
 }

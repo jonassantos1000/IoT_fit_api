@@ -4,32 +4,32 @@ let graficoPassos
 let segundos = 0
 
 
-function desenharGraficos(){
-    google.charts.load('current', {'packages':['corechart', 'gauge']});
+function desenharGraficos() {
+    google.charts.load('current', { 'packages': ['corechart', 'gauge'] });
     google.charts.setOnLoadCallback(criarTodosGraficos);
 };
 
-function criarTodosGraficos(){
+function criarTodosGraficos() {
     let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
-                    new google.visualization.LineChart(document.getElementById('curve_chart')),
-                    [], new DistanciaTempoOptions());
+        new google.visualization.LineChart(document.getElementById('curve_chart')),
+        [], new DistanciaTempoOptions());
 
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 
 
     let graficoPassosInstancia = new GraficoLinha('Distância (metros)', 'Passos)',
-                    new google.visualization.LineChart(document.getElementById('grafico_passos')),
-                    [], new PassosDistanciaOptions());
+        new google.visualization.LineChart(document.getElementById('grafico_passos')),
+        [], new PassosDistanciaOptions());
 
     graficoPassos = graficoPassosInstancia
     graficoPassos.criarGrafico();
 
 
 
-    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 0],
-                    new google.visualization.Gauge(document.getElementById('speed_chart')),
-                    new VelocidadeMediaOptions().VelocidadeOptions())
+    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 50],
+        new google.visualization.Gauge(document.getElementById('speed_chart')),
+        new VelocidadeMediaOptions().VelocidadeOptions())
 
     graficoVelocidade = graficoVelocidadeInstancia
     graficoVelocidade.criarGrafico()
@@ -46,16 +46,23 @@ setInterval(() => {
 //Requisição a cada um certo periodo de tempo para atualizar os gráficos
 setInterval(() => {
 
-        fetchDados()
-                .then(response => response.json())
-                .then(json =>  {
+    fetchDados()
+        .then(response => response.json())
+        .then(json => {
+            if (graficoDistancia._valores.length == 0) {
+                graficoDistancia.atualizarDados([0, 0])
+            }
 
-                     graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
+            if (graficoPassos._valores.length == 0) {
+                graficoPassos.atualizarDados([0, 0])
+            }
 
-                     graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos])
+            graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
 
-                     graficoVelocidade.atualizarDados(['m/s',json.velocidade_media])
+            graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos])
 
-                })
-                .catch(err => console.log(err))
-}, 5000)
+            graficoVelocidade.atualizarDados(['m/s', json.velocidade_media])
+
+        })
+        .catch(err => console.log(err))
+}, 30000)
