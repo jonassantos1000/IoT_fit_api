@@ -1,6 +1,6 @@
 class GraficoLinha extends Grafico{
     constructor(eY, eX, googleChart, valores, options){
-        super(googleChart, valores,options.retornarOptions(60))
+        super(googleChart, valores, options.retornarOptions(60))
         this._eY = eY
         this._eX = eX
         this._obj = options
