@@ -6,7 +6,7 @@ class Grafico {
         this._options = options
     }
 
-     atualizarDados(valoresAPI, distanciaAnterior) {
+     atualizarDados(valoresAPI) {
         throw new Error('Metodo abstrato, a classe filha precisa implementar')
      }
 

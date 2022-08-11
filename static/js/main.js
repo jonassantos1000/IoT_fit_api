@@ -49,14 +49,6 @@ setInterval(() => {
         fetchDados()
                 .then(response => response.json())
                 .then(json =>  {
-                    if(graficoDistancia._valores.length == 0){
-                        graficoDistancia.atualizarDados([0, 0])
-                    }
-
-                    if(graficoPassos._valores.length == 0){
-                        graficoPassos.atualizarDados([0, 0])
-                    }
-
 
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
 
