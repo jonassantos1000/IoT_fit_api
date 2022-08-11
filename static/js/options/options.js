@@ -43,7 +43,7 @@ class DistanciaTempoOptions {
                     min: 0
                 }
             },
-            width: '100%',
+
             height: 300,
 
             titleTextStyle: {
@@ -103,7 +103,7 @@ class PassosDistanciaOptions {
                     min: 0
                 }
             },
-            width: '100%',
+
             height: 300,
             titleTextStyle: {
                 color: "white"
@@ -122,8 +122,8 @@ class VelocidadeMediaOptions {
     VelocidadeOptions() {
 
         return {
-            title: 'Velocidade média em m/s',
-            width: '100%',
+
+
             height: 150,
             redFrom: 15,
             redTo: 20,

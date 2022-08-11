@@ -11,7 +11,7 @@ function desenharGraficos() {
 
 function criarTodosGraficos() {
     let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
-        new google.visualization.LineChart(document.getElementById('curve_chart')),
+        new google.visualization.LineChart(document.getElementById('grafico_distancia')),
         [], new DistanciaTempoOptions());
 
     graficoDistancia = graficoDistanciaInstancia
@@ -27,8 +27,8 @@ function criarTodosGraficos() {
 
 
 
-    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 50],
-        new google.visualization.Gauge(document.getElementById('speed_chart')),
+    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 0],
+        new google.visualization.Gauge(document.getElementById('grafico_velocidade')),
         new VelocidadeMediaOptions().VelocidadeOptions())
 
     graficoVelocidade = graficoVelocidadeInstancia
@@ -49,13 +49,6 @@ setInterval(() => {
     fetchDados()
         .then(response => response.json())
         .then(json => {
-            if (graficoDistancia._valores.length == 0) {
-                graficoDistancia.atualizarDados([0, 0])
-            }
-
-            if (graficoPassos._valores.length == 0) {
-                graficoPassos.atualizarDados([0, 0])
-            }
 
             graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
 
@@ -65,4 +58,11 @@ setInterval(() => {
 
         })
         .catch(err => console.log(err))
-}, 30000)
+}, 5000)
+
+//Garante o que o gráfico seja responsivo
+$(window).resize(function(){
+  graficoDistancia.desenharGrafico()
+  graficoPassos.desenharGrafico()
+  graficoVelocidade.desenharGrafico()
+});
