@@ -1,12 +1,11 @@
 class GraficoVelocidade extends Grafico{
-
     constructor(valores, googleChart, options){
         super(googleChart, valores, options)
     }
 
     atualizarDados(valoresAPI) {
-        this._velocidade = valoresAPI
-        this.criarTabel()
+        this._valores = valoresAPI
+        this.criarTabela()
         super.desenharGrafico()
     }
 
@@ -17,9 +16,8 @@ class GraficoVelocidade extends Grafico{
 
     criarTabela(){
         this._data = new google.visualization.DataTable()
-                this.criarColuna()
+        this.criarColuna()
         this.criarLinha()
-
     }
 
     criarColuna(){
@@ -27,7 +25,7 @@ class GraficoVelocidade extends Grafico{
         this._data.addColumn('number', 'm/s');
     }
 
-    criarLinha(velocidade_media){
-        this._data.addRow(['m/s', velocidade_media]);
+    criarLinha(){
+        this._data.addRow(this._valores);
     }
 }

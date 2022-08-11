@@ -17,6 +17,7 @@ function criarTodosGraficos(){
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
 
+
     let graficoPassosInstancia = new GraficoLinha('Distância (metros)', 'Passos)',
                     new google.visualization.LineChart(document.getElementById('grafico_passos')),
                     [], new PassosDistanciaOptions());
@@ -25,10 +26,10 @@ function criarTodosGraficos(){
     graficoPassos.criarGrafico();
 
 
-    let graficoVelocidadeInstancia = new GraficoVelocidade([['velocidade', 50], ['velocidade', 0]],
-                    new google.visualization.Gauge(document.getElementById('speed_chart')),
-                    new VelocidadeMediaOptions())
 
+    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 0],
+                    new google.visualization.Gauge(document.getElementById('speed_chart')),
+                    new VelocidadeMediaOptions().VelocidadeOptions())
 
     graficoVelocidade = graficoVelocidadeInstancia
     graficoVelocidade.criarGrafico()
@@ -56,14 +57,13 @@ setInterval(() => {
                         graficoPassos.atualizarDados([0, 0])
                     }
 
-                    if(graficoVelocidade._valores.length == 0){
-                        graficoVelocidade.atualizarDados(0)
-                    }
-
 
                      graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
+
                      graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos])
-                     graficoVelocidade.atualizarDados(json.velocidade_media)
+
+                     graficoVelocidade.atualizarDados(['m/s',json.velocidade_media])
+
                 })
                 .catch(err => console.log(err))
 }, 5000)

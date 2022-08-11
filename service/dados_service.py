@@ -38,7 +38,7 @@ class DadosService:
 
     def _gerar_resposta(self, response):
         result = response.json()
-        if len(result['bucket'][0]['dataset'][0]['point']) != 0:
+        if result.get('bucket', 0) != 0 and len(result['bucket'][0]['dataset'][0]['point']) != 0:
             qtde_passos = result['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal']
             qtde_metros = result['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']
             velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
