@@ -1,14 +1,15 @@
 class GraficoLinha extends Grafico{
-    constructor(eY, eX, googleChart, valores, options){
+    constructor(eY, eX, googleChart, valores, options, unidadeMedida){
         super(googleChart, valores,options.retornarOptions(60))
         this._obj = options
+        this._unidadeMedida= unidadeMedida
         this._eY = eY
         this._eX = eX
     }
 
      atualizarDados(valoresAPI) {
         if(this._valores.length == 0){
-            this.adicionarDados([0, 0])
+            this.adicionarDados([0, 0, `0 ${this._unidadeMedida}`])
         }
         this.adicionarDados(valoresAPI)
         this._options = this._obj.retornarOptions(valoresAPI[1])
@@ -34,6 +35,7 @@ class GraficoLinha extends Grafico{
      criarColunas() {
         this._data.addColumn('number', this._eY)
         this._data.addColumn('number', this._eX)
+        this._data.addColumn({type: 'string', role: 'annotation'});
     }
 
     criarLinhas() {

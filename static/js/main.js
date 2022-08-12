@@ -5,14 +5,14 @@ let segundos = 0
 
 
 function desenharGraficos() {
-    google.charts.load('current', { 'packages': ['corechart', 'gauge'] });
+    google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(criarTodosGraficos);
 };
 
 function criarTodosGraficos() {
     let graficoDistanciaInstancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
         new google.visualization.LineChart(document.getElementById('grafico_distancia')),
-        [], new DistanciaTempoOptions());
+        [], new DistanciaTempoOptions(), 'm/s');
 
     graficoDistancia = graficoDistanciaInstancia
     graficoDistancia.criarGrafico();
@@ -20,26 +20,17 @@ function criarTodosGraficos() {
 
     let graficoPassosInstancia = new GraficoLinha('Distância (metros)', 'Passos)',
         new google.visualization.LineChart(document.getElementById('grafico_passos')),
-        [], new PassosDistanciaOptions());
+        [], new PassosDistanciaOptions(), 'p/d');
 
     graficoPassos = graficoPassosInstancia
     graficoPassos.criarGrafico();
-
-
-
-    let graficoVelocidadeInstancia = new GraficoVelocidade(['m/s', 0],
-        new google.visualization.Gauge(document.getElementById('grafico_velocidade')),
-        new VelocidadeMediaOptions().VelocidadeOptions())
-
-    graficoVelocidade = graficoVelocidadeInstancia
-    graficoVelocidade.criarGrafico()
 }
 
 desenharGraficos()
 
 //Começa a contar o tempo de atividade
 setInterval(() => {
-    segundos += 30
+    segundos += 1
 }, 1000)
 
 
@@ -50,11 +41,9 @@ setInterval(() => {
         .then(response => response.json())
         .then(json => {
 
-            graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia)])
+            graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia), `${json.velocidade_media} ${graficoDistancia._unidadeMedida}`])
 
-            graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos])
-
-            graficoVelocidade.atualizarDados(['m/s', json.velocidade_media])
+            graficoPassos.atualizarDados([Math.floor(json.distancia), json.passos, `${segundos} ${graficoPassos._unidadeMedida}`])
 
         })
         .catch(err => console.log(err))
@@ -64,5 +53,4 @@ setInterval(() => {
 $(window).resize(function(){
   graficoDistancia.desenharGrafico()
   graficoPassos.desenharGrafico()
-  graficoVelocidade.desenharGrafico()
 });
