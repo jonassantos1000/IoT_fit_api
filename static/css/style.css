@@ -25,10 +25,18 @@ body {
     background-color: #222b45
 }
 
+
 .titulo_card {
     font-size: 13px;
     font-weight: bold;
     color: rgb(255, 255, 255);
-    text-align: center;
     padding: 10px 0px;
+    text-align: center;
+}
+
+.conteudo_card {
+    font-size: 58px;
+    color: rgb(255, 255, 255);
+    padding: 10px 0px;
+    text-align: center;
 }

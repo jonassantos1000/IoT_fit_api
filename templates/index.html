@@ -38,21 +38,33 @@
         </div>
     </header>
     <main class="container">
-        <div class="d-flex flex-column">
-            <div class="d-flex my-3 justify-content-between">
-                <div class="flex-column col-8">
+
+            <div class="row justify-content-between my-3">
+                <div class="flex-column col-sm-12 col-lg-8 mb-3">
                     <div class="w-100" id="grafico_distancia"></div>
                     <div class="w-100 mt-3" id="grafico_passos"></div>
                 </div>
 
-                <div class="flex-column col-4 ps-3">
-                    <div class="col-md-8 bg_card w-100 h-100">
-                        <h2 class="text-center pt-4 text-light">Totalizadores</h2>
-                        <div class="w-100 bg_card"></div>
+                <div class="flex-column col-sm-12 col-lg-4">
+                    <div class="col-md-6 w-100 bg_card">
+                        <h2 class="text-center py-3 titulo_card">Totalizadores</h2>
+                    </div>
+                    <div class="col-md-6 mt-3 w-100 bg_card">
+                        <h2 class="titulo_card">Total de passos</h2>
+                        <p class="conteudo_card"><span id="total_passos">0</span></p>
+                    </div>
+                     <div class="col-md-6  mt-3 w-100 bg_card">
+                        <h2 class="titulo_card">Distância Total</h2>
+                         <p class="conteudo_card"><span id="distancia_total">0</span> m</p>
+                    </div>
+
+                     <div class="col-md-6  mt-3 w-100 bg_card">
+                        <h2 class="titulo_card">Velocidade Máxima</h2>
+                         <p class="conteudo_card"><span id="velocidade_maxima">0</span> m/s</p>
                     </div>
                 </div>
             </div>
-        </div>
+
     </main>
 </body>
 
