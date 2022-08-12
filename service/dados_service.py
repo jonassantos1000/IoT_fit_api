@@ -26,7 +26,6 @@ class DadosService:
         return url, headers, PayLoad(list_aggregate, bucketByTime(86400000).dict(), payload_dto.startTimeMillis, payload_dto.endTimeMillis).dict()
 
     def _carregar_token(self):
-        data = ''
         with open('./token.json') as file:
             jsonToken = json.load(file)
         return jsonToken['token']
@@ -38,13 +37,20 @@ class DadosService:
 
     def _gerar_resposta(self, response):
         result = response.json()
+
         if result.get('bucket', 0) != 0 and len(result['bucket'][0]['dataset'][0]['point']) != 0:
             qtde_passos = result['bucket'][0]['dataset'][0]['point'][0]['value'][0]['intVal']
             qtde_metros = result['bucket'][0]['dataset'][1]['point'][0]['value'][0]['fpVal']
+
             velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
-            response = Response(qtde_passos, qtde_metros,velocidade_media).dict()
+            passos_medio = self._calcular_passos_medio(passos=qtde_passos, distancia=qtde_metros)
+            response = Response(qtde_passos, qtde_metros, velocidade_media, passos_medio).dict()
+            print(response)
             return response
-        return dict(passos=0, distancia=0, velocidade_media= 0)
+        return dict(passos=0, distancia=0, velocidade_media=0, passos_medio=0)
 
     def _calcular_velocidade_media(self, distancia, tempo):
         return round(distancia / tempo, 3)
+
+    def _calcular_passos_medio(self, passos, distancia):
+        return round(passos / distancia, 3)
