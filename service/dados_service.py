@@ -53,4 +53,4 @@ class DadosService:
         return round(distancia / tempo, 3)
 
     def _calcular_passos_medio(self, passos, distancia):
-        return round(passos / distancia, 3)
+        return round(distancia / passos, 3)
