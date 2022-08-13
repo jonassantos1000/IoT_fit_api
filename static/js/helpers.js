@@ -44,6 +44,10 @@ function atualizarTodosGraficos(json){
 
     graficoPassos.atualizarDados([somarDistancia(json.distancia), json.passos,
                 `${json.passos_medio} ${graficoPassos._unidadeMedida}`])
+
+    atualizarVelocidadeMaxima(json.velocidade_media)
+    somarPassos(json.passos)
+    atualizarTotalizadores()
 }
 
 function mostrarAlerta(mensagem){

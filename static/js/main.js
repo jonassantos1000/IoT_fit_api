@@ -19,9 +19,6 @@ setInterval(() => {
         .then(response => response.json())
         .then(json => {
             atualizarTodosGraficos(json)
-            atualizarVelocidadeMaxima(json.velocidade_media)
-            somarPassos(json.passos)
-            atualizarTotalizadores()
         })
         .catch(err => {
             mostrarAlerta("Ocorreu um erro ao atualizar os dados.")
