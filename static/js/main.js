@@ -7,13 +7,8 @@ let segundos = 0
 
 
 function criarTodosGraficos() {
-    graficoDistancia = new GraficoLinha('Tempo (min)', 'Distância (metros)',
-        new google.visualization.LineChart(document.getElementById('grafico_distancia')),
-        [], options.DISTANCIA_TEMPO, 'm/s');
-
-    graficoPassos = new GraficoLinha('Distância (metros)', 'Passos)',
-        new google.visualization.LineChart(document.getElementById('grafico_passos')),
-        [], options.PASSOS_METRO, 'm/p');
+    graficoDistancia = new GraficoLinha('grafico_distancia', options.DISTANCIA_TEMPO);
+    graficoPassos = new GraficoLinha('grafico_passos', options.PASSOS_METRO);
 
     graficoPassos.criarGrafico();
     graficoDistancia.criarGrafico();
@@ -59,7 +54,6 @@ setInterval(() => {
     fetchDados()
         .then(response => response.json())
         .then(json => {
-            atualizarGraficos(json)
             graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia), `${json.velocidade_media} ${graficoDistancia._unidadeMedida}`])
             graficoPassos.atualizarDados([somarDistancia(json.distancia), json.passos, `${json.passos_medio} ${graficoPassos._unidadeMedida}`])
 

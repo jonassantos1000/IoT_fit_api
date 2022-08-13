@@ -1,8 +1,8 @@
 class Grafico {
-    constructor(googleChart, valores, options) {
-        this._valores = valores
+    constructor(idGrafico, options) {
+        this._valores = []
         this._data = new google.visualization.DataTable()
-        this._grafico = googleChart
+        this._grafico = new google.visualization.LineChart(document.getElementById(idGrafico))
         this._options = options
     }
 

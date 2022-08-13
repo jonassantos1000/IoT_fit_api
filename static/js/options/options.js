@@ -8,7 +8,7 @@ class Option {
         return this.option
     }
 
-    gerarOption(tituloPrincipal, tituloHA, tituloVA, formatHA, formatVA){
+    gerarOption(tituloPrincipal, tituloHA, tituloVA, formatHA, unidadeMedida, formatVA){
         this.option = {
             title: tituloPrincipal,
             legend: "none",
@@ -44,7 +44,6 @@ class Option {
             },
 
             height: 300,
-
             titleTextStyle: {
                 color: "white"
             },
@@ -53,13 +52,14 @@ class Option {
                 "rgb(0, 214, 143)"
             ],
             fontName: "Sora",
-            pointSize: 5
+            pointSize: 5,
+            medida: unidadeMedida
             }
         return this
     }
 }
 
 const options = Object.freeze({
-    DISTANCIA_TEMPO: new Option().gerarOption("Distância percorrida x tempo", "Tempo (min)", "Distância (metros)", '#.# min','### m'),
-    PASSOS_METRO: new Option().gerarOption("Passos", "Distância (metros)", "Passos", '### m')
+    DISTANCIA_TEMPO: new Option().gerarOption("Distância percorrida x tempo", "Tempo (min)", "Distância (metros)", '#.# min', 'm/s','### m'),
+    PASSOS_METRO: new Option().gerarOption("Passos", "Distância (metros)", "Passos",'### m', 'm/p')
 })

@@ -45,7 +45,6 @@ class DadosService:
             velocidade_media = self._calcular_velocidade_media(qtde_metros, 30)
             passos_medio = self._calcular_passos_medio(passos=qtde_passos, distancia=qtde_metros)
             response = Response(qtde_passos, qtde_metros, velocidade_media, passos_medio).dict()
-            print(response)
             return response
         return dict(passos=0, distancia=0, velocidade_media=0, passos_medio=0)
 
