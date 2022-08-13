@@ -39,11 +39,13 @@ function atualizarVelocidadeMaxima(velocidade){
 }
 
 function atualizarTodosGraficos(json){
-    graficoDistancia.atualizarDados([(segundos / 60),
-        Math.floor(json.distancia), `${json.velocidade_media} ${graficoDistancia._unidadeMedida}`])
+    graficoDistancia.atualizarDados([(segundos / 60), Math.floor(json.distancia),
+                `${json.velocidade_media} ${graficoDistancia._unidadeMedida}`,
+                 `Metros: ${json.distancia}\nMinutos: ${Number((segundos/ 60).toFixed(2))}`])
 
     graficoPassos.atualizarDados([somarDistancia(json.distancia), json.passos,
-                `${json.passos_medio} ${graficoPassos._unidadeMedida}`])
+                `${json.passos_medio} ${graficoPassos._unidadeMedida}`,
+                `Passos: ${json.passos_medio}\nMetros: ${json.distancia}`])
 
     atualizarVelocidadeMaxima(json.velocidade_media)
     somarPassos(json.passos)

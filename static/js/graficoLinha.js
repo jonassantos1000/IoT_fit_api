@@ -9,7 +9,7 @@ class GraficoLinha extends Grafico{
 
      atualizarDados(valoresAPI) {
         if(this._valores.length == 0){
-            this.adicionarDados([0, 0, `0 ${this._unidadeMedida}`])
+            this.adicionarDados([0, 0, `0 ${this._unidadeMedida}`, `Metros: 0 \nMinutos: 0`])
         }
         this.adicionarDados(valoresAPI)
         this._options = this._obj.retornarOption(valoresAPI[1])
@@ -36,6 +36,7 @@ class GraficoLinha extends Grafico{
         this._data.addColumn('number', this._eY)
         this._data.addColumn('number', this._eX)
         this._data.addColumn({type: 'string', role: 'annotation'});
+        this._data.addColumn({type: 'string', role: 'tooltip'});
     }
 
     criarLinhas() {
