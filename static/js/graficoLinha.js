@@ -1,6 +1,6 @@
 class GraficoLinha extends Grafico{
     constructor(eY, eX, googleChart, valores, options, unidadeMedida){
-        super(googleChart, valores,options.retornarOptions(60))
+        super(googleChart, valores,options.retornarOption(60))
         this._obj = options
         this._unidadeMedida= unidadeMedida
         this._eY = eY
@@ -12,7 +12,7 @@ class GraficoLinha extends Grafico{
             this.adicionarDados([0, 0, `0 ${this._unidadeMedida}`])
         }
         this.adicionarDados(valoresAPI)
-        this._options = this._obj.retornarOptions(valoresAPI[1])
+        this._options = this._obj.retornarOption(valoresAPI[1])
         this.criarTabela()
         super.desenharGrafico()
      }
