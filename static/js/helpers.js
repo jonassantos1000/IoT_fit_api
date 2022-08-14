@@ -9,7 +9,6 @@ function criarTodosGraficos(){
     graficoDistancia.criarGrafico();
 }
 
-
 function desenharGraficos() {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(criarTodosGraficos);
@@ -51,8 +50,6 @@ function atualizarTodosGraficos(json){
     atualizarVelocidadeMaxima(json.velocidade_media)
     somarPassos(json.passos)
     atualizarTotalizadores()
-
-    console.log(graficoPassos._valores)
 }
 
 function mostrarAlerta(mensagem){
