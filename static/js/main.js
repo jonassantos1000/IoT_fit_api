@@ -15,7 +15,6 @@ setInterval(() => {
             atualizarTodosGraficos(json)
         })
         .catch(err => {
-            console.log(err)
             mostrarAlerta("Ocorreu um erro ao atualizar os dados.")
         })
 }, 30000)

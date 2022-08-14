@@ -61,5 +61,5 @@ class Option {
 
 const options = Object.freeze({
     DISTANCIA_TEMPO: new Option().gerarOption("Distância percorrida x tempo", "Tempo (min)", "Distância (metros)", '#.# min', 'm/s','### m'),
-    PASSOS_METRO: new Option().gerarOption("Passos", "Distância (metros)", "Passos",'### m', 'm/p')
+    PASSOS_METRO: new Option().gerarOption("Passos x Distância percorrida", "Distância (metros)", "Passos",'### m', 'm/p')
 })
