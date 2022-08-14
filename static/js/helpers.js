@@ -29,6 +29,7 @@ function atualizarTotalizadores() {
     $("#total_passos").text(passosTotal)
     $("#distancia_total").text(Math.floor(distanciaTotal))
     $("#velocidade_maxima").text(velocidadeMaxima)
+    $("#media_passos").text(passosTotal == 0 ? 0 : Number((passosTotal / distanciaTotal).toFixed(2)))
 }
 
 function atualizarVelocidadeMaxima(velocidade){
@@ -50,6 +51,8 @@ function atualizarTodosGraficos(json){
     atualizarVelocidadeMaxima(json.velocidade_media)
     somarPassos(json.passos)
     atualizarTotalizadores()
+
+    console.log(graficoPassos._valores)
 }
 
 function mostrarAlerta(mensagem){
